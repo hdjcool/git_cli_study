@@ -1,0 +1,256 @@
+
+//---------------------------git 저장소 생성
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual
+$ git init
+Initialized empty Git repository in D:/study/git/manual/.git/
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+
+
+//---------------------------git 상태보기
+//---------------------------등록 되지 않은 work.txt 상태
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        work.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+//git 에 work.txt 파일 등록
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git add work.txt
+
+//---------------------------git 상태보기
+//---------------------------commit 되지 않은 work.txt 상태
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   work.txt
+
+//---------------------------git 에 버전 등록 
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git commit -m "work 1"
+[master (root-commit) 57b364b] work 1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 work.txt
+
+//---------------------------git 상태보기
+//---------------------------변경 할 사항 없음
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+//---------------------------git 로그보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log
+commit 57b364b8183d54d30da7de4aadf325e75012fbbe (HEAD -> master)
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:34:55 2022 +0900
+
+    work 1
+
+
+//---------------------------git 버전 3개 추가 후 log 차이점 보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log -p
+commit b27cba3ea1a2d088a33ab0fb5fa638f46296823e (HEAD -> master)
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:39:54 2022 +0900
+
+    work.txt
+
+diff --git a/work.txt b/work.txt
+index 710415a..fa9850e 100644
+--- a/work.txt
++++ b/work.txt
+@@ -1,2 +1,3 @@
+ content 1
+ content 2
++content 3
+
+commit f5978108c08b560bd759c9d58a1d926009f4663c
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:38:18 2022 +0900
+
+    work 2
+
+diff --git a/work.txt b/work.txt
+index a0054e4..710415a 100644
+--- a/work.txt
++++ b/work.txt
+@@ -1 +1,2 @@
+ content 1
++content 2
+
+commit 57b364b8183d54d30da7de4aadf325e75012fbbe
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:34:55 2022 +0900
+
+    work 1
+
+diff --git a/work.txt b/work.txt
+new file mode 100644
+index 0000000..a0054e4
+--- /dev/null
++++ b/work.txt
+@@ -0,0 +1 @@
++content 1
+
+//---------------------------git 최신 버전 잘 못되어 work2 로 reset 후 최종버전 삭제
+//--------------------------- --hard : 버전도 삭제 작업한 내용도 삭제
+//--------------------------- --soft : 버전은 삭제 하지만 작업한 내용은 유지
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git reset --hard f5978108c08b560bd759c9d58a1d926009f4663c
+HEAD is now at f597810 work 2
+
+//---------------------------git 최종 버전 삭제 후 다시 로그 보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log
+commit f5978108c08b560bd759c9d58a1d926009f4663c (HEAD -> master)
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:38:18 2022 +0900
+
+    work 2
+
+commit 57b364b8183d54d30da7de4aadf325e75012fbbe
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:34:55 2022 +0900
+
+    work 1
+
+//---------------------------git work3 버전 생성 후 로그보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git commit -am "work 3"
+[master 0b1f6d1] work 3
+ 1 file changed, 1 insertion(+)
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log
+commit 0b1f6d156cfffec444871c268737114cb52a9fd2 (HEAD -> master)
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:54:16 2022 +0900
+
+    work 3
+
+commit f5978108c08b560bd759c9d58a1d926009f4663c
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:38:18 2022 +0900
+
+    work 2
+
+commit 57b364b8183d54d30da7de4aadf325e75012fbbe
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:34:55 2022 +0900
+
+    work 1
+
+//---------------------------git work 4 버전 생성
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log
+commit 821a15cd5d14523f7e58c9df7e933f1f6a4e8a4c (HEAD -> master)
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 10:07:03 2022 +0900
+
+    work 4
+
+commit 825e199c633c31e2740c63f4654d9f6ecb7b9aff
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:59:35 2022 +0900
+
+    work 3
+
+commit f5978108c08b560bd759c9d58a1d926009f4663c
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:38:18 2022 +0900
+
+    work 2
+
+commit 57b364b8183d54d30da7de4aadf325e75012fbbe
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:34:55 2022 +0900
+
+    work 1
+
+//---------------------------git work 4 revert
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git revert 821a15cd5d14523f7e58c9df7e933f1f6a4e8a4c
+[master bbee194] Revert "work 4"
+ 1 file changed, 1 deletion(-)
+
+//---------------------------git work 4에서 revert 된 로그 보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log
+commit bbee194ad4ef7be5a50472c7990a961d6f5e3a16 (HEAD -> master)
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 10:07:44 2022 +0900
+
+    Revert "work 4"
+
+    This reverts commit 821a15cd5d14523f7e58c9df7e933f1f6a4e8a4c.
+
+commit 821a15cd5d14523f7e58c9df7e933f1f6a4e8a4c
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 10:07:03 2022 +0900
+
+    work 4
+
+commit 825e199c633c31e2740c63f4654d9f6ecb7b9aff
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:59:35 2022 +0900
+
+    work 3
+
+commit f5978108c08b560bd759c9d58a1d926009f4663c
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:38:18 2022 +0900
+
+    work 2
+
+commit 57b364b8183d54d30da7de4aadf325e75012fbbe
+Author: hwangdj <hdjcool@gmail.com>
+Date:   Fri Jan 14 09:34:55 2022 +0900
+
+    work 1
+
+//------------------- 최종 버전 수정 후 add 전 파일 수정 비교
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ vim work.txt
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   work.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git diff
+diff --git a/work.txt b/work.txt
+index fa9850e..6cb20bb 100644
+--- a/work.txt
++++ b/work.txt
+@@ -1,3 +1,4 @@
+ content 1
+ content 2
+ content 3
++content error
+
+// 잘못 수정 되었기 때무에 add 하지 않고 수정 내용 삭제
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git reset --hard
+HEAD is now at bbee194 Revert "work 4"
+

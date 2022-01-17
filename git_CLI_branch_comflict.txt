@@ -1,0 +1,248 @@
+//--- gir log 옵션 추가 보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log --all --graph --oneline
+* bbee194 (HEAD -> master) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- git branch 목록 보기
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git branch
+* master
+
+//--- git branch 만들기 apple
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git branch apple
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git branch
+  apple
+* master
+
+//--- gir log 옵션에서 apple 추가 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log --all --graph --oneline
+* bbee194 (HEAD -> master, apple) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- git branch 만들기 google 추가 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git branch google
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log --all --graph --oneline
+* bbee194 (HEAD -> master, google, apple) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- git branch 만들기 ms 추가 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git branch ma
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log --all --graph --oneline
+* bbee194 (HEAD -> master, ma, google, apple) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+
+//--- master work 4 버전 생성 후 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git commit -am "master work 4"
+[master 2a5cb69] master work 4
+ 1 file changed, 1 insertion(+)
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log --all --graph --oneline
+* 2a5cb69 (HEAD -> master) master work 4
+* bbee194 (ma, google, apple) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- apple 로 checkout 후 HEAD 위치 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git checkout apple
+Switched to branch 'apple'
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (apple)
+$ git log --all --graph --oneline
+* 2a5cb69 (master) master work 4
+* bbee194 (HEAD -> apple, ma, google) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- apple work 4 버전 생성 후 log 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (apple)
+$ git commit -am "apple work 4"
+[apple 2e70c4b] apple work 4
+ 1 file changed, 1 insertion(+)
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (apple)
+$ git log --all --graph --oneline
+* 2e70c4b (HEAD -> apple) apple work 4
+| * 2a5cb69 (master) master work 4
+|/
+* bbee194 (ma, google) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- google 로 checkout
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (apple)
+$ git checkout google
+Switched to branch 'google'
+
+//--- google work 4 버전 생성 후 log 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (google)
+$ git commit -am "google work 4"
+[google 313eb98] google work 4
+ 1 file changed, 1 insertion(+)
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (google)
+$ git log --all --graph --oneline
+* 313eb98 (HEAD -> google) google work 4
+| * 2e70c4b (apple) apple work 4
+|/
+| * 2a5cb69 (master) master work 4
+|/
+* bbee194 (ma) Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- ma 로 checkout
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git checkout ma
+Switched to branch 'ma'
+
+//--- branch 이름 변경 ma->ms
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ma)
+$ git branch -m ms
+
+//--- ms work 4 버전 생성 후 log 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ git commit -am "ms work 4"
+[ms 48784ec] ms work 4
+ 1 file changed, 1 insertion(+)
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ git log --all --graph --oneline
+* 48784ec (HEAD -> ms) ms work 4
+| * 313eb98 (google) google work 4
+|/
+| * 2e70c4b (apple) apple work 4
+|/
+| * 2a5cb69 (master) master work 4
+|/
+* bbee194 Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//git commit message 수정
+//git commit --amend 
+
+//--- ms에 ms.txt 파일 추가 후 commit
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ vim ms.txt
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ git add ms.txt
+warning: LF will be replaced by CRLF in ms.txt.
+The file will have its original line endings in your working directory
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ git commit -m "ms work 5"
+[ms ef16696] ms work 5
+ 1 file changed, 1 insertion(+)
+ create mode 100644 ms.txt
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ git log --all --graph --oneline
+* ef16696 (HEAD -> ms) ms work 5
+* 48784ec ms work 4
+| * 313eb98 (google) google work 4
+|/
+| * 2e70c4b (apple) apple work 4
+|/
+| * 2a5cb69 (master) master work 4
+|/
+* bbee194 Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1
+
+//--- master 로 merge 하기 위해 master 로 checkout
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (ms)
+$ git checkout master
+Switched to branch 'master'
+
+//--- ms 를 master 로 merge 시도 but 실패
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git merge ms
+Auto-merging work.txt
+CONFLICT (content): Merge conflict in work.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+//--- 충돌 상태 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+        new file:   ms.txt
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   work.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        git_CLI_branch_comflict.txt
+        "git_CLI_\353\263\265\354\212\265.txt"
+
+//--- work.txt 파일로 가서 충돌 해결 후 다시 add 후 commit
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master|MERGING)
+$ vim work.txt
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master|MERGING)
+$ git commit
+[master d6ac0ba] Merge branch 'ms'
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git log --all --graph --oneline
+*   d6ac0ba (HEAD -> master) Merge branch 'ms'
+|\
+| * ef16696 (ms) ms work 5
+| * 48784ec ms work 4
+* | 2a5cb69 master work 4
+|/
+| * 313eb98 (google) google work 4
+|/
+| * 2e70c4b (apple) apple work 4
+|/
+* bbee194 Revert "work 4"
+* 821a15c work 4
+* 825e199 work 3
+* f597810 work 2
+* 57b364b work 1

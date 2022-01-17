@@ -1,0 +1,48 @@
+//github 에 등록
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git remote add origin https://github.com/hdjcool/git_cli_study.git
+
+//remote 등록 상태 확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git remote
+origin
+
+//remote 주소확인
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git remote -v
+origin  https://github.com/hwangdj/git_cli_study.git (fetch)
+origin  https://github.com/hwangdj/git_cli_study.git (push)
+
+//git push
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git push
+fatal: The current branch master has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin master
+
+hdj@HDJ-HANSUNG MINGW64 /d/study/git/manual (master)
+$ git push --set-upstream origin master
+Logon failed, use ctrl+c to cancel basic credential prompt.
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (25/25), 1.90 KiB | 114.00 KiB/s, done.
+Total 25 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), done.
+To https://github.com/hdjcool/git_cli_study.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+//github 토큰
+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
+
+git config --global user.name "hdjcool"
+git config --global user.email "hdjcool@gmail.com"
+
+//토큰 캐시 저장
+git config --global credential.helper cache
+
+//토큰 캐시 삭제
+git config --global --unset credential.helper
