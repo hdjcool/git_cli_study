@@ -58,5 +58,27 @@ remote: Compressing objects: 100% (15/15), done.
 remote: Total 30 (delta 2), reused 30 (delta 2), pack-reused 0
 Unpacking objects: 100% (30/30), done.
 
-//github 테스트8
+//git fetch 기능 추가
+drogpard@DROGPARD-MSI MINGW64 /d/study/git/manual (master)
+$ git fetch
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 4), reused 6 (delta 4), pack-reused 0
+Unpacking objects: 100% (6/6), 597 bytes | 0 bytes/s, done.
+From https://github.com/hdjcool/git_cli_study
+   478a14b..8ad844c  master     -> origin/master
+
+drogpard@DROGPARD-MSI MINGW64 /d/study/git/manual (master)
+////$ git merge origin/master --- 아래 git merge FETCH_HEAD 와 동일 command
+$ git merge FETCH_HEAD
+Updating 478a14b..8ad844c
+Fast-forward
+ ...I_\354\233\220\352\262\251\354\240\200\354\236\245\354\206\214.txt" | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+drogpard@DROGPARD-MSI MINGW64 /d/study/git/manual (master)
+$ cat .git/FETCH_HEAD
+8ad844cfade56a6d0e4e35f162f5a0d259679c2c                branch 'master' of https://github.com/hdjcool/git_cli_study
+
 
