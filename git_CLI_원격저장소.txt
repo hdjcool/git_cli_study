@@ -36,7 +36,7 @@ To https://github.com/hdjcool/git_cli_study.git
 Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 //github 토큰
-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
+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
 
 git config --global user.name "hdjcool"
 git config --global user.email "hdjcool@gmail.com"
