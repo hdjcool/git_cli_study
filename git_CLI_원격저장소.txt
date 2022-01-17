@@ -46,3 +46,14 @@ git config --global credential.helper cache
 
 //토큰 캐시 삭제
 git config --global --unset credential.helper
+
+
+//git 저장소 복제
+drogpard@DROGPARD-MSI MINGW64 /d/study/git
+$ git clone https://github.com/hdjcool/git_cli_study.git manual
+Cloning into 'manual'...
+remote: Enumerating objects: 30, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 30 (delta 2), reused 30 (delta 2), pack-reused 0
+Unpacking objects: 100% (30/30), done.
